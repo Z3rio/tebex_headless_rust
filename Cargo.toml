@@ -1,7 +1,10 @@
 [package]
 name = "tebex_headless_rust"
+description = "Wrapper library for Tebex's Headless API"
+repository = "https://github.com/Z3rio/tebex_headless_rust"
 version = "0.1.0"
 edition = "2021"
+license = "GPLv3"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
