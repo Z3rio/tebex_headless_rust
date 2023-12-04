@@ -1,12 +1,12 @@
 use serde::{Deserialize, Serialize};
 
-#[derive(Deserialize, Serialize)]
+#[derive(Deserialize, Serialize, Clone)]
 pub struct Category {
     pub id: i32,
     pub name: String
 }
 
-#[derive(Deserialize, Serialize)]
+#[derive(Deserialize, Serialize, Clone)]
 pub struct Package {
     pub id: i32,
     pub name: String,
@@ -25,12 +25,12 @@ pub struct Package {
     pub updated_at: Option<String>
 }
 
-#[derive(Deserialize, Serialize)]
+#[derive(Deserialize, Serialize, Clone)]
 pub struct Data<T> {
     pub data: T
 }
 
-#[derive(Deserialize, Serialize)]
+#[derive(Deserialize, Serialize, Clone)]
 pub struct CategoryParent {
     pub id: i32,
     pub name: String,
@@ -40,7 +40,7 @@ pub struct CategoryParent {
     pub display_type: String
 }
 
-#[derive(Deserialize, Serialize)]
+#[derive(Deserialize, Serialize, Clone)]
 pub struct FullCategory {
     pub id: i32,
     pub name: String,
@@ -50,17 +50,17 @@ pub struct FullCategory {
     pub display_type: String
 }
 
-#[derive(Deserialize, Serialize)]
+#[derive(Deserialize, Serialize, Clone)]
 pub struct Giftcard {
 
 }
 
-#[derive(Deserialize, Serialize)]
+#[derive(Deserialize, Serialize, Clone)]
 pub struct Coupon {
     
 }
 
-#[derive(Deserialize, Serialize)]
+#[derive(Deserialize, Serialize, Clone)]
 pub struct Basket {
     pub ident: String,
     pub complete: bool,
@@ -79,13 +79,13 @@ pub struct Basket {
     pub links: Vec<String>    
 }
 
-#[derive(Deserialize, Serialize)]
+#[derive(Deserialize, Serialize, Clone)]
 pub struct BasketUrl {
     pub name: String,
     pub url: String
 }
 
-#[derive(Deserialize, Serialize)]
+#[derive(Deserialize, Serialize, Clone)]
 pub struct Webstore {
     pub id: i32,
     pub description: String,
@@ -98,7 +98,7 @@ pub struct Webstore {
     pub created_at: Option<String>
 }
 
-#[derive(Deserialize, Serialize)]
+#[derive(Deserialize, Serialize, Clone)]
 pub struct Message {
     pub message: String
 }
