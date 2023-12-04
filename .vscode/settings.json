@@ -1,0 +1,7 @@
+{
+    "editor.formatOnSave": true,
+    "files.exclude": {
+        "**/CODE_OF_CONDUCT.md": true,
+        "**/LICENSE": true
+    }
+}
