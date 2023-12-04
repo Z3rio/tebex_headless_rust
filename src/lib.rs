@@ -1,6 +1,6 @@
 pub mod structs;
 pub mod handlers;
-mod tests;
+pub mod tests;
 
 use std::env::VarError;
 use dotenv::dotenv;
