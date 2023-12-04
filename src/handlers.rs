@@ -3,3 +3,4 @@ pub mod category;
 pub mod basket;
 pub mod webstores;
 pub mod coupons;
+pub mod gift_cards;
