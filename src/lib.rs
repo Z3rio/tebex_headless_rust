@@ -18,7 +18,7 @@ pub fn get_public_api_key() -> Result<String, String> {
         Ok(res_data) => {
             return Ok(res_data)
         }
-        
+
         _ => {
             return Err(String::from("Public API key is not set"));
         }

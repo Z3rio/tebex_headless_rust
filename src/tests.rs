@@ -1,6 +1,6 @@
 #[cfg(test)]
 mod tests {
-    use crate::{handlers::{basket::{create_basket, get_basket, get_basket_auth_url}, self}, get_env_var};
+    use crate::{handlers::{basket::{create_basket, get_basket, get_basket_auth_url}, self, webstores::get_webstore}, get_env_var};
 
     fn get_local_ip() -> String {
         return local_ip_address::local_ip().unwrap().to_string();
@@ -96,5 +96,13 @@ mod tests {
                 return Err(String::from(format!("Error trying to create basket, {0}", err)));
             }
         }
+    }
+
+    // webstores
+    #[tokio::test]
+    async fn try_get_webstore() -> Result<(), String> {
+        get_webstore().await.expect("Could not get webstore");
+
+        return Ok(());
     }
 }
