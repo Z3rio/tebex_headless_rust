@@ -1,4 +1,4 @@
-use crate::{structs::{FullCategory, Data}, get_public_api_key, BASE_URL};
+use crate::{get_public_api_key, BASE_URL, models::{category::FullCategory, misc::Data}};
 
 pub async fn get_category(category_id: i32, include_packages: bool) -> Result<FullCategory, String> {
     let api_key = get_public_api_key();

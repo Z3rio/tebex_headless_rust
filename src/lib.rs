@@ -1,4 +1,4 @@
-pub mod structs;
+pub mod models;
 pub mod handlers;
 pub mod tests;
 

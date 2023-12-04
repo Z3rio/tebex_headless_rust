@@ -1,4 +1,4 @@
-use crate::{structs::{Package, Data}, get_public_api_key, BASE_URL};
+use crate::{get_public_api_key, BASE_URL, models::{packages::Package, misc::Data}};
 
 pub async fn get_package(package_id: i32) -> Result<Package, String> {
     let api_key = get_public_api_key();
