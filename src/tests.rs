@@ -1,6 +1,6 @@
 #[cfg(test)]
 mod tests {
-    use crate::{handlers::{basket::{create_basket, get_basket, get_basket_auth_url}, self, webstores::get_webstore}, get_env_var};
+    use crate::{handlers::{basket::{create_basket, get_basket, get_basket_auth_url}, self, webstores::get_webstore, coupons::{apply_coupon, remove_coupon}}, get_env_var};
 
     fn get_local_ip() -> String {
         return local_ip_address::local_ip().unwrap().to_string();
@@ -72,7 +72,7 @@ mod tests {
             }
 
             Err (err) => {
-                return Err(String::from(format!("Error trying to create basket, {0}", err)));
+                return Err(String::from(format!("Error trying to get basket, {0}", err)));
             }
         }
     }
@@ -93,7 +93,7 @@ mod tests {
             }
 
             Err (err) => {
-                return Err(String::from(format!("Error trying to create basket, {0}", err)));
+                return Err(String::from(format!("Error trying to get basket auth url, {0}", err)));
             }
         }
     }
@@ -104,5 +104,68 @@ mod tests {
         get_webstore().await.expect("Could not get webstore");
 
         return Ok(());
+    }
+
+    // coupons
+    #[tokio::test]
+    async fn try_apply_coupon() -> Result<(), String> {
+        let basket = create_basket(get_local_ip(), None).await;
+
+        match basket {
+            Ok(basket) => {
+                let applied = apply_coupon(basket.ident.clone(), String::from("coupon_code")).await;
+
+                match applied {
+                    Ok(_) => {
+                        return Ok(())
+                    }
+
+                    Err (err) => {
+                        return Err(String::from(format!("Error trying to apply coupon, {0}", err)));
+                    }
+                }
+
+            }
+
+            Err (err) => {
+                return Err(String::from(format!("Error trying to create basket, {0}", err)));
+            }
+        }
+    }
+
+    #[tokio::test]
+    async fn try_remove_coupon() -> Result<(), String> {
+        let basket = create_basket(get_local_ip(), None).await;
+
+        match basket {
+            Ok(basket) => {
+                let applied = apply_coupon(basket.ident.clone(), String::from("coupon_code")).await;
+
+                match applied {
+                    Ok(_) => {
+                        let removed = remove_coupon(basket.ident.clone(), String::from("coupon_code")).await;
+
+                        match removed {
+                            Ok(_) => {
+                                return Ok(())
+                            }
+        
+                            Err (err) => {
+                                return Err(String::from(format!("Error trying to remove coupon, {0}", err)));
+                            }
+                        }
+                    }
+
+                    Err (err) => {
+                        return Err(String::from(format!("Error trying to apply coupon, {0}", err)));
+                    }
+                }
+
+            }
+
+            Err (err) => {
+                return Err(String::from(format!("Error trying to create basket, {0}", err)));
+            }
+        }
     }
 }

@@ -97,3 +97,8 @@ pub struct Webstore {
     pub platform_type: String,
     pub created_at: Option<String>
 }
+
+#[derive(Deserialize, Serialize)]
+pub struct Message {
+    pub message: String
+}
