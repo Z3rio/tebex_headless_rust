@@ -11,7 +11,7 @@ pub struct Package {
     pub id: i32,
     pub name: String,
     pub description: String,
-    pub image: String,
+    pub image: Option<String>,
     pub r#type: String,
     pub category: Category,
     pub base_price: f32,
