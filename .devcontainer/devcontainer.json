@@ -14,10 +14,11 @@
 			"extensions": [
 				"cschleiden.vscode-github-actions",
 				"ms-vsliveshare.vsliveshare",
-				"matklad.rust-analyzer",
 				"serayuzgur.crates",
 				"vadimcn.vscode-lldb",
-				"tamasfe.even-better-toml"
+				"tamasfe.even-better-toml",
+				"rust-lang.rust-analyzer",
+				"JScearcy.rust-doc-viewer"
 			]
 		}
 	}
