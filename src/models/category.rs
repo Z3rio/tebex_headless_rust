@@ -1,5 +1,6 @@
 use serde::{Deserialize, Serialize};
-use super::packages::Package;
+
+use super::package::Package;
 
 #[derive(Deserialize, Serialize, Clone, Debug)]
 pub struct Category {

@@ -1,9 +1,12 @@
+//! This module contains the functions for adding/removing coupons
+
 use serde_json::json;
 
 use crate::{BASE_URL, models::misc::Message};
 
 use super::misc::get_public_api_key;
 
+/// Apply a coupon to a specific basket
 pub async fn apply_coupon(basket_identifier: String, coupon_code: String) -> Result<Message, String> {
     let api_key = get_public_api_key();
 
@@ -45,6 +48,7 @@ pub async fn apply_coupon(basket_identifier: String, coupon_code: String) -> Res
     }
 }
 
+/// Remove a coupon from a specific basket
 pub async fn remove_coupon(basket_identifier: String, coupon_code: String) -> Result<Message, String> {
     let api_key = get_public_api_key();
 

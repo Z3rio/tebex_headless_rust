@@ -1,9 +1,12 @@
+//! This module contains the functions for adding/removing creator codes
+
 use serde_json::json;
 
 use crate::{BASE_URL, models::misc::Message};
 
 use super::misc::get_public_api_key;
 
+/// Apply a creator code to a specific basket
 pub async fn apply_creator_code(basket_identifier: String, creator_code: String) -> Result<Message, String> {
     let api_key = get_public_api_key();
 
@@ -45,6 +48,7 @@ pub async fn apply_creator_code(basket_identifier: String, creator_code: String)
     }
 }
 
+/// Remove the current creator code for basket with specific id
 pub async fn remove_creator_code(basket_identifier: String) -> Result<Message, String> {
     let api_key = get_public_api_key();
 

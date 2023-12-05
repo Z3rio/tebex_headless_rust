@@ -1,7 +1,10 @@
-use crate::{BASE_URL, models::{packages::Package, misc::Data}};
+//! This module contains all handlers for interacting with packages
+
+use crate::{BASE_URL, models::{package::Package, misc::Data}};
 
 use super::misc::get_public_api_key;
 
+/// Get package data based on the packages id
 pub async fn get_package(package_id: i32) -> Result<Package, String> {
     let api_key = get_public_api_key();
 
@@ -38,6 +41,7 @@ pub async fn get_package(package_id: i32) -> Result<Package, String> {
     }
 }
 
+/// Get a list/vector of all packages
 pub async fn get_all_packages() -> Result<Vec<Package>, String> {
     let api_key = get_public_api_key();
 

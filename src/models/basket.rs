@@ -1,5 +1,5 @@
 use serde::{Deserialize, Serialize};
-use super::{packages::Package, coupons::Coupon, gift_cards::Giftcard, misc::{FieldOfDetail, Meta}};
+use super::{package::Package, coupons::Coupon, gift_cards::Giftcard, misc::{FieldOfDetail, Meta}};
 
 #[derive(Deserialize, Serialize, Clone, Debug)]
 pub struct Basket {

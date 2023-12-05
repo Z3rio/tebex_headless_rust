@@ -1,3 +1,5 @@
+//! This module contains all the functions which could not be categorized into any of the previous categories
+
 use std::env::VarError;
 use dotenv::dotenv;
 

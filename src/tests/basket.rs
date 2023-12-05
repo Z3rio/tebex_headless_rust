@@ -1,6 +1,6 @@
 #[cfg(test)]
 mod tests {
-    use crate::{handlers::{basket::{create_basket, get_basket, get_basket_auth_url, add_package_to_basket, remove_package_from_basket, update_package_basket_quantity}, package::get_all_packages}, tests::misc::get_local_ip, models::{basket::Basket, packages::Package}};
+    use crate::{handlers::{basket::{create_basket, get_basket, get_basket_auth_url, add_package_to_basket, remove_package_from_basket, update_package_basket_quantity}, package::get_all_packages}, tests::misc::get_local_ip, models::{basket::Basket, package::Package}};
 
     #[tokio::test]
     async fn try_create_basket() -> Result<(), String> {

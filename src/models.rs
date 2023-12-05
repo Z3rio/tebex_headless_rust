@@ -3,6 +3,6 @@ pub mod category;
 pub mod coupons;
 pub mod gift_cards;
 pub mod misc;
-pub mod packages;
+pub mod package;
 pub mod webstores;
 pub mod creator_codes;

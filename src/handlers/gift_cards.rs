@@ -1,9 +1,12 @@
+//! This module contains the functions for adding/removing gift cards
+
 use serde_json::json;
 
 use crate::{BASE_URL, models::misc::Message};
 
 use super::misc::get_public_api_key;
 
+/// Apply gift card to basket with specific id
 pub async fn apply_gift_card(basket_identifier: String, card_number: String) -> Result<Message, String> {
     let api_key = get_public_api_key();
 
@@ -45,6 +48,7 @@ pub async fn apply_gift_card(basket_identifier: String, card_number: String) -> 
     }
 }
 
+/// Remove specific gift card from basket with specific id
 pub async fn remove_gift_card(basket_identifier: String, card_number: String) -> Result<Message, String> {
     let api_key = get_public_api_key();
 

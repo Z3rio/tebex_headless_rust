@@ -1,9 +1,12 @@
+//! This module contains all the functions which are related to both the basket in itself, but also handling packages in the basket
+
 use serde_json::json;
 
 use crate::{BASE_URL, models::{basket::{Basket, BasketUrl, PackageRetVal}, misc::Data}};
 
 use super::misc::get_public_api_key;
 
+/// Get the basket data from an basket identifier
 pub async fn get_basket(basket_identifier: String) -> Result<Basket, String> {
     let api_key = get_public_api_key();
 
@@ -40,6 +43,7 @@ pub async fn get_basket(basket_identifier: String) -> Result<Basket, String> {
     }
 }
 
+/// Get auth url from an basket identifier
 pub async fn get_basket_auth_url(basket_identifier: String, return_url: String) -> Result<Vec<BasketUrl>, String> {
     let api_key = get_public_api_key();
 
@@ -76,6 +80,7 @@ pub async fn get_basket_auth_url(basket_identifier: String, return_url: String) 
     }
 }
 
+/// Create a new basket based on an ip_address, and possible minecraft username
 pub async fn create_basket(ip_address: String, username: Option<String>) -> Result<Basket, String> {
     let api_key = get_public_api_key();
 
@@ -124,6 +129,8 @@ pub async fn create_basket(ip_address: String, username: Option<String>) -> Resu
     }
 }
 
+/// Add a package of specific id to basket of specific identifier.
+/// `type` should either be `"single"` or `"subscription"`
 pub async fn add_package_to_basket(basket_identifier: String, package_id: i32, quantity: i32, r#type: String) -> Result<Basket, String> {
     if r#type != "single" && r#type != "subscription" {
         return Err(String::from("The package type has to either be \"single\" or \"subscription\"!"))
@@ -169,6 +176,7 @@ pub async fn add_package_to_basket(basket_identifier: String, package_id: i32, q
     }
 }
 
+/// Remove a package of specific id to basket of specific identifier.
 pub async fn remove_package_from_basket(basket_identifier: String, package_id: i32) -> Result<Basket, String> {
     let client = reqwest::Client::new();
     let res = client.post(format!("{0}/baskets/{1}/packages/remove", BASE_URL, basket_identifier))
@@ -208,6 +216,7 @@ pub async fn remove_package_from_basket(basket_identifier: String, package_id: i
     }
 }
 
+/// Update the quantity of a package with the specific id in a basket of the specific identifier.
 pub async fn update_package_basket_quantity(basket_identifier: String, package_id: i32, quantity: i32) -> Result<Basket, String> {
     let client = reqwest::Client::new();
     let res = client.put(format!("{0}/baskets/{1}/packages/{2}", BASE_URL, basket_identifier, package_id))
@@ -247,6 +256,9 @@ pub async fn update_package_basket_quantity(basket_identifier: String, package_i
     }
 }
 
+/// Add a gift package of specific id to basket of specific identifier.
+/// `type` should either be `"single"` or `"subscription"`
+/// `target_username` would be the username of the person to gift
 pub async fn add_gift_package_to_basket(basket_identifier: String, package_id: i32, target_username: String) -> Result<Basket, String> {
     let client = reqwest::Client::new();
     let res = client.post(format!("{0}/baskets/{1}/packages", BASE_URL, basket_identifier))

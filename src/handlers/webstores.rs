@@ -1,7 +1,10 @@
+//! This module contains all the functions for interacting and fetching global information from your webstore
+
 use crate::{BASE_URL, models::{webstores::Webstore, misc::Data}};
 
 use super::misc::get_public_api_key;
 
+/// Get all the webstore/misc data
 pub async fn get_webstore() -> Result<Webstore, String> {
     let api_key = get_public_api_key();
 

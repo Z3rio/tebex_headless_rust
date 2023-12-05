@@ -1,3 +1,5 @@
+//! This handlers directory contains all different functions, grouped into different modules/categories
+
 pub mod package;
 pub mod category;
 pub mod basket;

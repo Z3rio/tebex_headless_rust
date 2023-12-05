@@ -1,7 +1,12 @@
+//! This module contains all handlers for interacting with categories
+
 use crate::{BASE_URL, models::{category::FullCategory, misc::Data}};
 
 use super::misc::get_public_api_key;
 
+/// Get category data based on the category id
+/// If `include_package` is set to true, all packages of the category will also be fetched
+/// Otherwise, an empty Vec of packages will be returned
 pub async fn get_category(category_id: i32, include_packages: bool) -> Result<FullCategory, String> {
     let api_key = get_public_api_key();
 
@@ -38,6 +43,9 @@ pub async fn get_category(category_id: i32, include_packages: bool) -> Result<Fu
     }
 }
 
+/// Gets a list of **all** categories in the webstore
+/// If `include_package` is set to true, all packages of the category will also be fetched
+/// Otherwise, an empty Vec of packages will be returned
 pub async fn get_all_categories(include_packages: bool) -> Result<Vec<FullCategory>, String> {
     let api_key = get_public_api_key();
 
