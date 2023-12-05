@@ -11,8 +11,13 @@
 //! use tebex_headless_rust::{set_public_api_key, handlers::packages::{get_all_packages}};
 //! 
 //! async fn main() {
+//! use tebex_headless_rust::{set_public_api_key, handlers::{package::{get_all_packages}}};
+//! 
+//! // tokio is used to allow an async main function
+//! #[tokio::main]
+//! async fn main() {
 //!     // set public api key
-//!     set_public_api_key("public_api_key_tebex");
+//!     set_public_api_key(String::from("public_api_key_tebex"));
 //! 
 //!     // fetch packages
 //!     let packages = get_all_packages().await;
