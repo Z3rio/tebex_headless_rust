@@ -1,8 +1,31 @@
-# Tebex Headless Wrapper (Rust)
+# Tebex Headless Wrapper
 
-This is a Wrapper Library for Tebex's Headless API.
+A wrapper library for Tebex's Headless API, aka creating the serverside for your headless Tebex webstore.
 
-The summarized aim/usage of Tebex's Headless API would be to create your own frontend for your webstore, and then communicate with Tebex via their Headless API.
+- **Fast**: One of our main aims, both when choosing to do this in Rust, and choosing our dependencies, was the fact that this should be blazing fast.
+- **Reliable**: This should pretty much be as reliable as possible, as it is a straight/raw wrapper for all Tebex API calls.
+
+[![Crates.io][crates-badge]][crates-url]
+[![Documentation][documentation-badge]][documentation-url]
+[![Discord chat][discord-badge]][discord-url]
+
+[crates-badge]: https://img.shields.io/crates/v/tebex_headless_rust.svg
+[crates-url]: https://crates.io/crates/tebex_headless_rust
+[documentation-url]: https://docs.rs/tebex_headless_rust/latest/tebex_headless_rust/
+[documentation-badge]: https://img.shields.io/badge/Documentation-blue
+[discord-badge]: https://img.shields.io/discord/931629164656734238.svg?logo=discord&style=flat-square
+[discord-url]: http://discord.zerio-scripts.com
+
+## Overview
+
+This is a simple but straight forward to use wrapper library for Tebex's Headless API.
+If you do not know what that is already, then please read [this](https://docs.tebex.io/developers/headless-api/overview) first.
+
+## Example
+
+```rs
+// todo
+```
 
 ## Issues, suggestions, etcetera
 
