@@ -1,4 +1,6 @@
-use crate::{get_public_api_key, BASE_URL, models::{webstores::Webstore, misc::Data}};
+use crate::{BASE_URL, models::{webstores::Webstore, misc::Data}};
+
+use super::misc::get_public_api_key;
 
 pub async fn get_webstore() -> Result<Webstore, String> {
     let api_key = get_public_api_key();

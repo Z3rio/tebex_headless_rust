@@ -1,6 +1,6 @@
 #[cfg(test)]
 pub mod tests {
-    use crate::get_env_var;
+    use crate::handlers::misc::get_env_var;
 
     #[test]
     fn check_env_vars() {

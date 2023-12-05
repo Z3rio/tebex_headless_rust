@@ -1,6 +1,8 @@
 use serde_json::json;
 
-use crate::{get_public_api_key, BASE_URL, models::misc::Message};
+use crate::{BASE_URL, models::misc::Message};
+
+use super::misc::get_public_api_key;
 
 pub async fn apply_gift_card(basket_identifier: String, card_number: String) -> Result<Message, String> {
     let api_key = get_public_api_key();

@@ -1,6 +1,8 @@
 use serde_json::json;
 
-use crate::{get_public_api_key, BASE_URL, models::misc::Message};
+use crate::{BASE_URL, models::misc::Message};
+
+use super::misc::get_public_api_key;
 
 pub async fn apply_creator_code(basket_identifier: String, creator_code: String) -> Result<Message, String> {
     let api_key = get_public_api_key();

@@ -1,6 +1,8 @@
 use serde_json::json;
 
-use crate::{get_public_api_key, BASE_URL, models::{basket::{Basket, BasketUrl, PackageRetVal}, misc::{Data}}};
+use crate::{BASE_URL, models::{basket::{Basket, BasketUrl, PackageRetVal}, misc::Data}};
+
+use super::misc::get_public_api_key;
 
 pub async fn get_basket(basket_identifier: String) -> Result<Basket, String> {
     let api_key = get_public_api_key();
