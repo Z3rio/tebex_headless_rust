@@ -1,6 +1,6 @@
 use serde_json::json;
 
-use crate::{get_public_api_key, BASE_URL, models::{basket::{Basket, BasketUrl}, misc::Data}};
+use crate::{get_public_api_key, BASE_URL, models::{basket::{Basket, BasketUrl, PackageRetVal}, misc::{Data}}};
 
 pub async fn get_basket(basket_identifier: String) -> Result<Basket, String> {
     let api_key = get_public_api_key();
@@ -139,12 +139,20 @@ pub async fn add_package_to_basket(basket_identifier: String, package_id: i32, q
 
     match res {
         Ok (data) => {
-            let json = data.json::<Data<Basket>>()
+            let json = data.json::<PackageRetVal>()
                 .await;
 
             match json {
                 Ok (json_data) => {
-                    return Ok(json_data.data);
+                    match json_data.data {
+                        Some(json_data_data) => {
+                            return Ok(json_data_data);
+                        }
+
+                        None => {
+                            return Err(String::from(format!("Could not find basket in returned data")))
+                        }
+                    }
                 }
 
                 Err(err) => {
@@ -170,12 +178,20 @@ pub async fn remove_package_from_basket(basket_identifier: String, package_id: i
 
     match res {
         Ok (data) => {
-            let json = data.json::<Data<Basket>>()
+            let json = data.json::<PackageRetVal>()
                 .await;
 
             match json {
                 Ok (json_data) => {
-                    return Ok(json_data.data);
+                    match json_data.data {
+                        Some(json_data_data) => {
+                            return Ok(json_data_data);
+                        }
+
+                        None => {
+                            return Err(String::from(format!("Could not find basket in returned data")))
+                        }
+                    }
                 }
 
                 Err(err) => {
@@ -201,12 +217,20 @@ pub async fn update_package_basket_quantity(basket_identifier: String, package_i
 
     match res {
         Ok (data) => {
-            let json = data.json::<Data<Basket>>()
+            let json = data.json::<PackageRetVal>()
                 .await;
 
             match json {
                 Ok (json_data) => {
-                    return Ok(json_data.data);
+                    match json_data.data {
+                        Some(json_data_data) => {
+                            return Ok(json_data_data);
+                        }
+
+                        None => {
+                            return Err(String::from(format!("Could not find basket in returned data")))
+                        }
+                    }
                 }
 
                 Err(err) => {

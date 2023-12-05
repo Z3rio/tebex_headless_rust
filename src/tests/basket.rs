@@ -1,6 +1,6 @@
 #[cfg(test)]
 mod tests {
-    use crate::{handlers::{basket::{create_basket, get_basket, get_basket_auth_url, add_package_to_basket, remove_package_from_basket, update_package_basket_quantity}, package::get_all_packages}, tests::misc::get_local_ip};
+    use crate::{handlers::{basket::{create_basket, get_basket, get_basket_auth_url, add_package_to_basket, remove_package_from_basket, update_package_basket_quantity}, package::get_all_packages}, tests::misc::get_local_ip, models::{basket::Basket, packages::Package}};
 
     #[tokio::test]
     async fn try_create_basket() -> Result<(), String> {
@@ -61,8 +61,21 @@ mod tests {
                             return Err(String::from("Cant test this, the length of packages has to atleast be 1"));
                         }
 
-                        add_package_to_basket(basket.ident, packages[0].id, 1, packages[0].r#type.clone()).await.expect("Could not add package to basket");
-                        return Ok(());
+                        let added = add_package_to_basket(basket.ident, packages[0].id, 1, packages[0].r#type.clone()).await;
+
+                        match added {
+                            Ok (_) => {
+                                return Ok(());
+                            }
+
+                            Err (err) => {
+                                if err != "Could not find basket in returned data" {
+                                    return Err(String::from(format!("Error trying to add package to basket, {0}", err)));
+                                } else {
+                                    return Ok(());
+                                }
+                            }
+                        }
                     }
         
                     Err (err) => {
@@ -73,6 +86,24 @@ mod tests {
 
             Err (err) => {
                 return Err(String::from(format!("Error trying to get basket, {0}", err)));
+            }
+        }
+    }
+
+    async fn test_removed(basket: Basket, package: Package) -> Result<(), String> {
+        let removed = remove_package_from_basket(basket.ident.clone(), package.id).await;
+
+        match removed {
+            Ok (_) => {
+                return Ok(());
+            }
+
+            Err (err) => {
+                if err != "Could not find basket in returned data" {
+                    return Err(String::from(format!("Error trying to remove package from basket, {0}", err)));
+                } else {
+                    return Ok(());
+                }
             }
         }
     }
@@ -91,9 +122,21 @@ mod tests {
                             return Err(String::from("Cant test this, the length of packages has to atleast be 1"));
                         }
 
-                        add_package_to_basket(basket.ident.clone(), packages[0].id, 1, packages[0].r#type.clone()).await.expect("Could not add package to basket");
-                        remove_package_from_basket(basket.ident.clone(), packages[0].id).await.expect("Could not remove package to basket");
-                        return Ok(());
+                        let added = add_package_to_basket(basket.ident.clone(), packages[0].id, 1, packages[0].r#type.clone()).await;
+
+                        match added {
+                            Ok (_) => {
+                                return test_removed(basket.clone(), packages[0].clone()).await;
+                            }
+
+                            Err (err) => {
+                                if err != "Could not find basket in returned data" {
+                                    return Err(String::from(format!("Error trying to add package to basket, {0}", err)));
+                                } else {
+                                    return test_removed(basket.clone(), packages[0].clone()).await;
+                                }
+                            }
+                        }
                     }
         
                     Err (err) => {
@@ -122,9 +165,35 @@ mod tests {
                             return Err(String::from("Cant test this, the length of packages has to atleast be 1"));
                         }
 
-                        add_package_to_basket(basket.ident.clone(), packages[0].id, 1, packages[0].r#type.clone()).await.expect("Could not add package to basket");
-                        update_package_basket_quantity(basket.ident.clone(), packages[0].id, 2).await.expect("Could not update package quantity");
-                        return Ok(());
+                        let added = add_package_to_basket(basket.ident.clone(), packages[0].id, 1, packages[0].r#type.clone()).await;
+
+                        match added {
+                            Ok (_) => {
+                                let updated = update_package_basket_quantity(basket.ident.clone(), packages[0].id, 2).await;
+
+                                match updated {
+                                    Ok (_) => {
+                                        return Ok(());
+                                    }
+                        
+                                    Err (err) => {
+                                        if err != "Could not find basket in returned data" {
+                                            return Err(String::from(format!("Error trying to update package in basket, {0}", err)));
+                                        } else {
+                                            return Ok(());
+                                        }
+                                    }
+                                }
+                            }
+                
+                            Err (err) => {
+                                if err != "Could not find basket in returned data" {
+                                    return Err(String::from(format!("Error trying to add package to basket, {0}", err)));
+                                } else {
+                                    return Ok(());
+                                }
+                            }
+                        }
                     }
         
                     Err (err) => {

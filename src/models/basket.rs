@@ -1,5 +1,5 @@
 use serde::{Deserialize, Serialize};
-use super::{packages::Package, coupons::Coupon, gift_cards::Giftcard};
+use super::{packages::Package, coupons::Coupon, gift_cards::Giftcard, misc::{FieldOfDetail, Meta}};
 
 #[derive(Deserialize, Serialize, Clone)]
 pub struct Basket {
@@ -24,4 +24,19 @@ pub struct Basket {
 pub struct BasketUrl {
     pub name: String,
     pub url: String
+}
+
+#[derive(Deserialize, Serialize, Clone)]
+pub struct PackageRetVal {
+    pub data: Option<Basket>,
+
+    // from ./models/misc.rs
+    pub status: Option<i32>,
+    pub r#type: Option<String>,
+    pub title: Option<String>,
+    pub detail: Option<String>,
+    pub error_code: Option<String>,
+    pub field_of_details: Option<Vec<FieldOfDetail>>,
+    pub meta: Option<Vec<Meta>>,
+    pub message: Option<String>
 }
