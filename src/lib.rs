@@ -7,7 +7,7 @@
 //! ```
 //! 
 //! # Example Usage
-//! ```rs
+//! ```rust
 //! use tebex_headless_rust::{set_public_api_key, handlers::packages::{get_all_packages}};
 //! 
 //! async fn main() {
