@@ -1,7 +1,7 @@
 use serde::{Deserialize, Serialize};
 use super::{packages::Package, coupons::Coupon, gift_cards::Giftcard, misc::{FieldOfDetail, Meta}};
 
-#[derive(Deserialize, Serialize, Clone)]
+#[derive(Deserialize, Serialize, Clone, Debug)]
 pub struct Basket {
     pub ident: String,
     pub complete: bool,
@@ -20,13 +20,13 @@ pub struct Basket {
     pub links: Vec<String>    
 }
 
-#[derive(Deserialize, Serialize, Clone)]
+#[derive(Deserialize, Serialize, Clone, Debug)]
 pub struct BasketUrl {
     pub name: String,
     pub url: String
 }
 
-#[derive(Deserialize, Serialize, Clone)]
+#[derive(Deserialize, Serialize, Clone, Debug)]
 pub struct PackageRetVal {
     pub data: Option<Basket>,
 

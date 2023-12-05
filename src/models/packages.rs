@@ -1,7 +1,7 @@
 use serde::{Deserialize, Serialize};
 use super::category::Category;
 
-#[derive(Deserialize, Serialize, Clone)]
+#[derive(Deserialize, Serialize, Clone, Debug)]
 pub struct Package {
     pub id: i32,
     pub name: String,

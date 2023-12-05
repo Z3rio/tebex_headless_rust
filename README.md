@@ -24,7 +24,27 @@ If you do not know what that is already, then please read [this](https://docs.te
 ## Example
 
 ```rs
-// todo
+use tebex_headless_rust::{set_public_api_key, handlers::packages::{get_all_packages}};
+
+async fn main() {
+    // set public api key
+    set_public_api_key("public_api_key_tebex");
+
+    // fetch packages
+    let packages = get_all_packages().await;
+
+    match packages {
+        // if packages successfully fetched
+        Ok (packages) => {
+            println!("Package amount: {}", packages.len());
+        }
+
+        // handle issue with fetching of packages
+        Err (err) => {
+            println!("Could not fetch pacakges: {}", err);
+        }
+    }
+}
 ```
 
 ## Issues, suggestions, etcetera
