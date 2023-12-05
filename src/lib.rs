@@ -9,10 +9,7 @@
 //! # Example Usage
 //! ```rust
 //! use tebex_headless_rust::{set_public_api_key, handlers::packages::{get_all_packages}};
-//! 
-//! async fn main() {
-//! use tebex_headless_rust::{set_public_api_key, handlers::{package::{get_all_packages}}};
-//! 
+//!
 //! // tokio is used to allow an async main function
 //! #[tokio::main]
 //! async fn main() {
@@ -38,7 +35,6 @@
 
 #![warn(
     missing_debug_implementations,
-    missing_docs,
     rust_2018_idioms,
     unreachable_pub
 )]
@@ -50,9 +46,8 @@
 #![cfg_attr(docsrs, allow(unused_attributes))]
 
 #[doc(hidden)]
-pub mod models;
-#[doc(hidden)]
-pub mod tests;
+mod tests;
 pub mod handlers;
+pub mod models;
 
 static BASE_URL: &str = "https://headless.tebex.io/api";

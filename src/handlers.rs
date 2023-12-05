@@ -1,5 +1,9 @@
 //! This handlers directory contains all different functions, grouped into different modules/categories
 
+#![warn(
+    missing_docs
+)]
+
 pub mod package;
 pub mod category;
 pub mod basket;

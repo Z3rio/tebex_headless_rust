@@ -1,5 +1,5 @@
 #[cfg(test)]
-pub mod tests {
+mod tests {
     use crate::handlers::misc::get_env_var;
 
     #[test]
@@ -8,8 +8,4 @@ pub mod tests {
 
         public_key.expect("TEBEX_PUBLIC_KEY is not present in your .env file");
     }
-}
-
-pub fn get_local_ip() -> String {
-    return local_ip_address::local_ip().unwrap().to_string();
 }

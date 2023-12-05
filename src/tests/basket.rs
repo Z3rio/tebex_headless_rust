@@ -1,17 +1,17 @@
 #[cfg(test)]
 mod tests {
-    use crate::{handlers::{basket::{create_basket, get_basket, get_basket_auth_url, add_package_to_basket, remove_package_from_basket, update_package_basket_quantity}, package::get_all_packages}, tests::misc::get_local_ip, models::{basket::Basket, package::Package}};
+    use crate::{handlers::{basket::{create_basket, get_basket, get_basket_auth_url, add_package_to_basket, remove_package_from_basket, update_package_basket_quantity}, package::get_all_packages}, models::{basket::Basket, package::Package}};
 
     #[tokio::test]
     async fn try_create_basket() -> Result<(), String> {
-        create_basket(get_local_ip(), None).await.expect("Could not create basket");
+        create_basket(local_ip_address::local_ip().unwrap().to_string(), None).await.expect("Could not create basket");
 
         return Ok(())
     }
 
     #[tokio::test]
     async fn try_get_basket() -> Result<(), String> {
-        let basket = create_basket(get_local_ip(), None).await;
+        let basket = create_basket(local_ip_address::local_ip().unwrap().to_string(), None).await;
 
         match basket {
             Ok(basket) => {
@@ -28,7 +28,7 @@ mod tests {
 
     #[tokio::test]
     async fn try_get_basket_auth_url() -> Result<(), String> {
-        let basket = create_basket(get_local_ip(), None).await;
+        let basket = create_basket(local_ip_address::local_ip().unwrap().to_string(), None).await;
 
         match basket {
             Ok(basket) => {
@@ -49,7 +49,7 @@ mod tests {
 
     #[tokio::test]
     async fn try_add_package_to_basket() -> Result<(), String> {
-        let basket = create_basket(get_local_ip(), None).await;
+        let basket = create_basket(local_ip_address::local_ip().unwrap().to_string(), None).await;
 
         match basket {
             Ok(basket) => {
@@ -110,7 +110,7 @@ mod tests {
 
     #[tokio::test]
     async fn try_remove_package_from_basket() -> Result<(), String> {
-        let basket = create_basket(get_local_ip(), None).await;
+        let basket = create_basket(local_ip_address::local_ip().unwrap().to_string(), None).await;
 
         match basket {
             Ok(basket) => {
@@ -153,7 +153,7 @@ mod tests {
 
     #[tokio::test]
     async fn try_update_package_basket_quantity() -> Result<(), String> {
-        let basket = create_basket(get_local_ip(), None).await;
+        let basket = create_basket(local_ip_address::local_ip().unwrap().to_string(), None).await;
 
         match basket {
             Ok(basket) => {

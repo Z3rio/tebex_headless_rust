@@ -1,10 +1,10 @@
 #[cfg(test)]
 mod tests {
-    use crate::{handlers::{basket::create_basket, creator_codes::{apply_creator_code, remove_creator_code}}, tests::misc::get_local_ip};
+    use crate::handlers::{basket::create_basket, creator_codes::{apply_creator_code, remove_creator_code}};
 
     #[tokio::test]
     async fn try_apply_creator_code() -> Result<(), String> {
-        let basket = create_basket(get_local_ip(), None).await;
+        let basket = create_basket(local_ip_address::local_ip().unwrap().to_string(), None).await;
 
         match basket {
             Ok(basket) => {
@@ -30,7 +30,7 @@ mod tests {
 
     #[tokio::test]
     async fn try_remove_creator_code() -> Result<(), String> {
-        let basket = create_basket(get_local_ip(), None).await;
+        let basket = create_basket(local_ip_address::local_ip().unwrap().to_string(), None).await;
 
         match basket {
             Ok(basket) => {

@@ -49,6 +49,11 @@ async fn main() {
 }
 ```
 
+## Todo
+
+- Some of the structs are empty as it the structure of them are unknown
+- Find some way to generate & **use** auth link via tests, as that would allow us to improve tests drastically
+
 ## Issues, suggestions, etcetera
 
 If you encounter an issue with our template, simply open an issue [here](https://github.com/Z3rio/tebex_headless_rust/issues)
