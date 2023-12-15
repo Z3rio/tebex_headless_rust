@@ -3,7 +3,7 @@ name = "tebex_headless_rust"
 description = "Wrapper library for Tebex's Headless API"
 readme = "README.md"
 repository = "https://github.com/Z3rio/tebex_headless_rust"
-version = "0.1.2"
+version = "0.1.3"
 edition = "2021"
 license = "GPL-3.0-only"
 
