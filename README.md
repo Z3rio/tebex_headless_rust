@@ -24,7 +24,7 @@ If you do not know what that is already, then please read [this](https://docs.te
 ## Example
 
 ```rs
-use tebex_headless_rust::{set_public_api_key, handlers::{package::{get_all_packages}}};
+use tebex_headless_rust::handlers::{misc::set_public_api_key, package::get_all_packages};
 
 // tokio is used to allow an async main function
 #[tokio::main]
@@ -33,7 +33,7 @@ async fn main() {
     set_public_api_key(String::from("public_api_key_tebex"));
 
     // fetch packages
-    let packages = get_all_packages().await;
+    let packages = get_all_packages(None, None).await;
 
     match packages {
         // if packages successfully fetched

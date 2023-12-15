@@ -53,7 +53,7 @@ mod tests {
 
         match basket {
             Ok(basket) => {
-                let packages = get_all_packages().await;
+                let packages = get_all_packages(None, None).await;
 
                 match packages {
                     Ok(packages) => {
@@ -114,7 +114,7 @@ mod tests {
 
         match basket {
             Ok(basket) => {
-                let packages = get_all_packages().await;
+                let packages = get_all_packages(None, None).await;
 
                 match packages {
                     Ok(packages) => {
@@ -157,7 +157,7 @@ mod tests {
 
         match basket {
             Ok(basket) => {
-                let packages = get_all_packages().await;
+                let packages = get_all_packages(None, None).await;
 
                 match packages {
                     Ok(packages) => {

@@ -7,12 +7,20 @@ use super::misc::get_public_api_key;
 /// Get category data based on the category id
 /// If `include_package` is set to true, all packages of the category will also be fetched
 /// Otherwise, an empty Vec of packages will be returned
-pub async fn get_category(category_id: i32, include_packages: bool) -> Result<FullCategory, String> {
+pub async fn get_category(category_id: i32, include_packages: bool, basket_identifier: Option<String>, ip_address: Option<String>) -> Result<FullCategory, String> {
     let api_key = get_public_api_key();
 
     match api_key {
         Ok (api_key) => {
-            let res = reqwest::get(format!("{0}/accounts/{1}/categories/{2}?includePackages={3}", BASE_URL, api_key, category_id, if include_packages { 1 } else { 0 }))
+            let res = reqwest::get(format!(
+                "{0}/accounts/{1}/categories/{2}?includePackages={3}{4}{5}",
+                BASE_URL,
+                api_key,
+                category_id,
+                if include_packages { 1 } else { 0 },
+                if basket_identifier.is_none() { String::from("") } else { format!("&basketIdent={0}", basket_identifier.unwrap()) },
+                if ip_address.is_none() { String::from("") } else { format!("&ipAddress={0}", ip_address.unwrap()) }
+            ))
                 .await;
 
             match res {
@@ -46,12 +54,19 @@ pub async fn get_category(category_id: i32, include_packages: bool) -> Result<Fu
 /// Gets a list of **all** categories in the webstore
 /// If `include_package` is set to true, all packages of the category will also be fetched
 /// Otherwise, an empty Vec of packages will be returned
-pub async fn get_all_categories(include_packages: bool) -> Result<Vec<FullCategory>, String> {
+pub async fn get_all_categories(include_packages: bool, basket_identifier: Option<String>, ip_address: Option<String>) -> Result<Vec<FullCategory>, String> {
     let api_key = get_public_api_key();
 
     match api_key {
         Ok (api_key) => {
-            let res = reqwest::get(format!("{0}/accounts/{1}/categories?includePackages={2}", BASE_URL, api_key, if include_packages { 1 } else { 0 }))
+            let res = reqwest::get(format!(
+                "{0}/accounts/{1}/categories?includePackages={2}{3}{4}",
+                BASE_URL,
+                api_key,
+                if include_packages { 1 } else { 0 },
+                if basket_identifier.is_none() { String::from("") } else { format!("&basketIdent={0}", basket_identifier.unwrap()) },
+                if ip_address.is_none() { String::from("") } else { format!("&ipAddress={0}", ip_address.unwrap()) }
+            ))
                 .await;
 
             match res {

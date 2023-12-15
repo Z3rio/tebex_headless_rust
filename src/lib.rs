@@ -8,7 +8,7 @@
 //! 
 //! # Example Usage
 //! ```rust
-//! use tebex_headless_rust::{set_public_api_key, handlers::packages::{get_all_packages}};
+//! use tebex_headless_rust::handlers::{misc::set_public_api_key, package::get_all_packages};
 //!
 //! // tokio is used to allow an async main function
 //! #[tokio::main]
@@ -17,7 +17,7 @@
 //!     set_public_api_key(String::from("public_api_key_tebex"));
 //! 
 //!     // fetch packages
-//!     let packages = get_all_packages().await;
+//!     let packages = get_all_packages(None, None).await;
 //! 
 //!     match packages {
 //!         // if packages successfully fetched
